@@ -103,7 +103,7 @@ async function jdGlobal() {
     $.logErr(e)
   }
    if ($.isNode()) {
-      notify.sendNotify(`${$.name}`, `京东账号${$.index}${$.nickName}\n','${allMessage}')
+      notify.sendNotify(`${$.name}`, `京东账号${$.index}${$.nickName}\n`,`${allMessage}`)
     }
 }
 
