@@ -109,7 +109,7 @@ function showMsg() {
     if ($.isNode()) {
     message += `本次运行获得${$.score}金币，共计${$.total}金币`
     $.msg($.name, '', `京东账号${$.index}${$.nickName}\n${message}`);
-    await notify.sendNotify(`${$.name}`, `京东账号${$.index}${$.nickName}\n${message}`);
+    notify.sendNotify(`${$.name}`, `京东账号${$.index}${$.nickName}\n${message}`);
     }
     resolve()
   })
