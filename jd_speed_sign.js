@@ -111,7 +111,7 @@ async function jdGlobal() {
 function showMsg() {
   return new Promise(resolve => {
    // if ($.isNode()) {
-    allMessage += '${message}${$.index !== cookiesArr.length ? '\n\n' : ''}';
+    allMessage += `${message}${$.index !== cookiesArr.length ? '\n\n' : ''}`;
     message += `本次运行获得${$.score}金币，共计${$.total}金币`
     $.msg($.name, '', `京东账号${$.index}${$.nickName}\n${message}`);
  //   notify.sendNotify(`${$.name}`, `京东账号${$.index}${$.nickName}\n${message}`);
