@@ -31,6 +31,7 @@ const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 
 
 let cookiesArr = [], cookie = '', message;
+let allMessage = '';
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
     cookiesArr.push(jdCookieNode[item])
@@ -101,16 +102,20 @@ async function jdGlobal() {
   } catch (e) {
     $.logErr(e)
   }
+   if ($.isNode()) {
+      notify.sendNotify(`${$.name}`, `京东账号${$.index}${$.nickName}\n','${allMessage}')
+    }
 }
 
 
 function showMsg() {
   return new Promise(resolve => {
-    if ($.isNode()) {
+   // if ($.isNode()) {
+    allMessage += '${message}${$.index !== cookiesArr.length ? '\n\n' : ''}';
     message += `本次运行获得${$.score}金币，共计${$.total}金币`
     $.msg($.name, '', `京东账号${$.index}${$.nickName}\n${message}`);
-    notify.sendNotify(`${$.name}`, `京东账号${$.index}${$.nickName}\n${message}`);
-    }
+ //   notify.sendNotify(`${$.name}`, `京东账号${$.index}${$.nickName}\n${message}`);
+  //  }
     resolve()
   })
 }
