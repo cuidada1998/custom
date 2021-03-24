@@ -31,7 +31,7 @@ const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 
 
 let cookiesArr = [], cookie = '', message;
-let allMessage = '';
+//let allMessage = '';
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
     cookiesArr.push(jdCookieNode[item])
@@ -110,15 +110,12 @@ async function jdGlobal() {
 
 function showMsg() {
   return new Promise(resolve => {
-   // if ($.isNode()) {
-    allMessage += `${message}${$.index !== cookiesArr.length ? '\n\n' : ''}`;
+    if ($.isNode()) {
+  //  allMessage += `${message}${$.index !== cookiesArr.length ? '\n\n' : ''}`;
     message += `本次运行获得${$.score}金币，共计${$.total}金币`
     $.msg($.name, '', `京东账号${$.index}${$.nickName}\n${message}`);
- //   notify.sendNotify(`${$.name}`, `京东账号${$.index}${$.nickName}\n${message}`);
-  //  }
-  if ($.isNode()) {
-    notify.sendNotify(`${$.name}`, `京东账号${$.index}${$.nickName}\n`,`${allMessage}`)
-  }
+    notify.sendNotify(`${$.name}`, `京东账号${$.index}${$.nickName}\n${message}`);
+    }
     resolve()
   })
    
