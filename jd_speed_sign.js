@@ -102,9 +102,9 @@ async function jdGlobal() {
   } catch (e) {
     $.logErr(e)
   }
-   if ($.isNode()) {
-      notify.sendNotify(`${$.name}`, `京东账号${$.index}${$.nickName}\n`,`${allMessage}`)
-    }
+  // if ($.isNode()) {
+   //   notify.sendNotify(`${$.name}`, `京东账号${$.index}${$.nickName}\n`,`${allMessage}`)
+   // }
 }
 
 
@@ -116,8 +116,12 @@ function showMsg() {
     $.msg($.name, '', `京东账号${$.index}${$.nickName}\n${message}`);
  //   notify.sendNotify(`${$.name}`, `京东账号${$.index}${$.nickName}\n${message}`);
   //  }
+  if ($.isNode()) {
+    notify.sendNotify(`${$.name}`, `京东账号${$.index}${$.nickName}\n`,`${allMessage}`)
+  }
     resolve()
   })
+   
 }
 
 async function signInit() {
