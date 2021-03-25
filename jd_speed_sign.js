@@ -31,7 +31,7 @@ const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 
 
 let cookiesArr = [], cookie = '', message;
-//let allMessage = '';
+let allMessage = '';//
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
     cookiesArr.push(jdCookieNode[item])
@@ -72,6 +72,9 @@ const JD_API_HOST = 'https://api.m.jd.com/', actCode = 'visa-card-001';
       await $.wait(2*1000)
     }
   }
+   if ($.isNode()) {//
+     notify.sendNotify(`${$.name}`, `京东账号${$.index}${$.nickName}\n`,`${allMessage}`)//
+    }//
 })()
   .catch((e) => {
     $.log('', `❌ ${$.name}, 失败! 原因: ${e}!`, '')
@@ -102,20 +105,19 @@ async function jdGlobal() {
   } catch (e) {
     $.logErr(e)
   }
-  // if ($.isNode()) {
-   //   notify.sendNotify(`${$.name}`, `京东账号${$.index}${$.nickName}\n`,`${allMessage}`)
-   // }
+  
 }
 
 
 function showMsg() {
   return new Promise(resolve => {
-    if ($.isNode()) {
-  //  allMessage += `${message}${$.index !== cookiesArr.length ? '\n\n' : ''}`;
+    //if ($.isNode()) {
+   
     message += `本次运行获得${$.score}金币，共计${$.total}金币`
     $.msg($.name, '', `京东账号${$.index}${$.nickName}\n${message}`);
-    notify.sendNotify(`${$.name}`, `京东账号${$.index}${$.nickName}\n${message}`);
-    }
+    allMessage += `${message}${$.index !== cookiesArr.length ? '\n\n' : ''}`;//
+   // notify.sendNotify(`${$.name}`, `京东账号${$.index}${$.nickName}\n${message}`);
+    //}
     resolve()
   })
    
