@@ -72,8 +72,8 @@ const JD_API_HOST = 'https://api.m.jd.com/', actCode = 'visa-card-001';
       await $.wait(2*1000)
     }
   }
-   if ($.isNode()) {//
-     notify.sendNotify(`${$.name}`, `京东账号${$.index}${$.nickName}\n`,`${allMessage}`)//
+   if ($.isNode() && allMessage) {//
+     notify.sendNotify(`${$.name}`, `${allMessage}`)//
     }//
 })()
   .catch((e) => {
@@ -115,7 +115,7 @@ function showMsg() {
    
     message += `本次运行获得${$.score}金币，共计${$.total}金币`
     $.msg($.name, '', `京东账号${$.index}${$.nickName}\n${message}`);
-    allMessage += `${message}${$.index !== cookiesArr.length ? '\n\n' : ''}`;//
+    allMessage += `京东账号${$.index}${$.nickName}\n${message}${$.index !== cookiesArr.length ? '\n\n' : ''}`//
    // notify.sendNotify(`${$.name}`, `京东账号${$.index}${$.nickName}\n${message}`);
     //}
     resolve()
