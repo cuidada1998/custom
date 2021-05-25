@@ -37,7 +37,7 @@ jobs:
           npm install
       - name: '运行 【618】'
         run: |
-          node 6181.js
+          node 6181.JS
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
           JD_DEBUG: ${{ secrets.JD_DEBUG }}
