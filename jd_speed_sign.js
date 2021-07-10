@@ -31,6 +31,7 @@ const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 
 
 let cookiesArr = [], cookie = '', message;
+let allMessage = '';
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
     cookiesArr.push(jdCookieNode[item])
@@ -71,6 +72,9 @@ const JD_API_HOST = 'https://api.m.jd.com/', actCode = 'visa-card-001';
       await $.wait(2*1000)
     }
   }
+     if ($.isNode() && allMessage) {//
+     notify.sendNotify(`${$.name}`, `${allMessage}`)//
+    }//
 })()
   .catch((e) => {
     $.log('', `❌ ${$.name}, 失败! 原因: ${e}!`, '')
@@ -108,6 +112,7 @@ function showMsg() {
   return new Promise(resolve => {
     message += `本次运行获得${$.score}金币，共计${$.total}金币\n可兑换 ${($.total/10000).toFixed(2)} 元京东红包\n兑换入口：京东极速版->我的->金币`
     $.msg($.name, '', `京东账号${$.index}${$.nickName}\n${message}`);
+    allMessage += `京东账号${$.index}${$.nickName}\n${message}${$.index !== cookiesArr.length ? '\n\n' : ''}`//
     resolve()
   })
 }
